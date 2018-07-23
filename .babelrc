@@ -1,14 +1,4 @@
 {
   "presets": ["react-native"],
-  "plugins": [
-    ["module-resolver", {
-      "alias": {
-        "@assets": "./assets",
-        "@common": "./src/common",
-        "@components": "./src/components"
-      }
-    }],
-    "transform-decorators-legacy"
-  ],
-
+  "plugins":["transform-decorators-legacy"]
 }

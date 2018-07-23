@@ -5,7 +5,9 @@ import { inject, observer } from 'mobx-react';
 import { ActivityIndicator, FlatList, RefreshControl, StyleSheet, View, Text } from 'react-native';
 
 
-// @inject('prices', 'wallets')
+@inject('prices')
+
+@observer
 export class WalletsOverview extends React.Component{
     static navigationOptions = ({ navigation, screenProps }) => ({
         title: 'Wallets',

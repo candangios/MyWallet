@@ -1,7 +1,7 @@
 import React from 'react';
-import { BackHandler, StatusBar, StyleSheet, View } from 'react-native';
+import { BackHandler, StatusBar, StyleSheet, View, Text } from 'react-native';
 import { Provider } from 'mobx-react';
-import autobind from 'autobind-decorator';
+// import autobind from 'class-autobind-decorator';
 import { colors } from './common/styles';
 import Router, { INITIAL_ROUTE } from './Router';
 import * as stores from './common/stores';
@@ -15,16 +15,17 @@ const STATUSBAR_CONFIG = {
 export default class Application extends React.Component {
 
     componentDidMount() {
-        BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackButton.bind(this));
     }
 
     componentWillUnmount() {
         BackHandler.removeEventListener('hardwareBackPress');
     }
 
-    @autobind
+    // @autobind
     handleBackButton() {
         if (!this.props.navigation) return false;
+        
         const { state, goBack } = this.props.navigation;
         if (state.routes.length > 1 && state.index > 0) {
             goBack();
@@ -32,8 +33,10 @@ export default class Application extends React.Component {
         }
         return false;
     }
+
     render() {
         return (
+    
             <Provider {...stores}>
                 <View style={styles.container}>
                     <StatusBar {...STATUSBAR_CONFIG} />

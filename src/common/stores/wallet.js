@@ -6,7 +6,7 @@ const  INITILA = {
     history:[],
     pendingtrasactions:[],
     loading: false
-},
+};
 
 export class WalletStore{
     @observable items = INITILA.items;
@@ -42,3 +42,4 @@ export class WalletStore{
     }
     
 }
+export default new WalletStore();

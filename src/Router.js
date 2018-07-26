@@ -7,18 +7,12 @@ import { colors } from './common/styles';
 export const INITIAL_ROUTE = 'WalletsOverview';
 
 const navigator = StackNavigator({
-    // ConfirmMnemonics: { screen: Views.ConfirmMnemonics },
-    // ConfirmTransaction: { screen: Views.ConfirmTransaction },
-    // CreateMnemonics: { screen: Views.CreateMnemonics },
-    // CreateWallet: { screen: Views.CreateWallet },
-    // LoadMnemonics: { screen: Views.LoadMnemonics },
-    // LoadPrivateKey: { screen: Views.LoadPrivateKey },
-    // LoadWallet: { screen: Views.LoadWallet },
-    // NewWallet: { screen: Views.NewWallet },
-    // NewWalletName: { screen: Views.NewWalletName },
-    // SelectDestination: { screen: Views.SelectDestination },
-    // WalletDetails: { screen: Views.WalletDetails },
-    WalletsOverview: { screen: Views.WalletsOverview }
+    WalletsOverview: { screen: Views.WalletsOverview },
+    NewWalletName: { screen: Views.NewWalletName },
+    NewWallet: {screen: Views.NewWallet},
+    CreateWallet: {screen: Views.CreateWallet},
+    CreateMnemonics: {screen: Views.CreateMnemonics},
+    ConfirmMnemonics: {screen: Views.ConfirmMnemonics}
 }, {
     initialRouteName: INITIAL_ROUTE,
     navigationOptions: {

@@ -1,6 +1,6 @@
 
 
-import {observable, action, } from 'mobx';
+import {observable, action} from 'mobx'
 
 const INITIAL = {
     usd: 0,
@@ -10,7 +10,7 @@ const INITIAL = {
 };
 class PricesStore {
 
-    @observable usd = 0;
+    @observable usd = INITIAL.usd;
     @observable eur = INITIAL.eur;
     @observable brl = INITIAL.brl;
     @observable loading = INITIAL.loading;

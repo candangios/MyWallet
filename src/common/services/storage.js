@@ -6,5 +6,6 @@ export function getItem(key) {
 }
 
 export function setItem(key, value) {
+    debugger;
     return SensitiveInfoStorage.setItem(key, value || '', Storage.CONFIG);
 }

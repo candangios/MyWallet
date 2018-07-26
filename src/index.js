@@ -1,10 +1,10 @@
 import React from 'react';
 import { BackHandler, StatusBar, StyleSheet, View, Text } from 'react-native';
 import { Provider } from 'mobx-react';
-// import autobind from 'class-autobind-decorator';
 import { colors } from './common/styles';
 import Router, { INITIAL_ROUTE } from './Router';
 import * as stores from './common/stores';
+
 
 const STATUSBAR_CONFIG = {
     backgroundColor: colors.statusBar,

@@ -1,5 +1,5 @@
 import {action, observable} from 'mobx';
-import { Transaction as TransactionUtils } from '@common/utils';
+import { Transaction as TransactionUtils } from '../utils';
 import ethers from 'ethers';
 const  INITILA = {
     items: null,

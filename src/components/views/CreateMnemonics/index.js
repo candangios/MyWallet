@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import autobind from 'autobind-decorator';
-import {colors, measures} from '@common/styles';
+import {colors, measures} from '../../../common/styles';
 import { autorun } from 'mobx';
 import { Wallet as WalletUtils } from '@common/utils';
 import { Button, TextBullet } from '../../widgets';
@@ -16,6 +16,10 @@ export class CreateMnemonics extends React.Component{
         const {mnemonics} = this.state;
         const {walletName, walletDescription} = this.props.navigation.state.params;
         this.props.navigation.navigate('ConfirmMnemonics',{mnemonics, walletName, walletDescription});
+    }
+
+    componentDidMount(){
+        this.onPressGenerateMmenonics();
     }
     @autobind
     onPressGenerateMmenonics(){

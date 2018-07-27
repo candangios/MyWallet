@@ -2,10 +2,12 @@ import React from 'react'
 import { HeaderIcon } from '../../widgets'
 import { inject, observer } from 'mobx-react';
 import {colors,measures} from '@common/styles'
-
+import autobind from 'autobind-decorator';
 import { ActivityIndicator, FlatList, RefreshControl, StyleSheet, View, Text } from 'react-native';
 import { Wallets as WalletsActions, Prices as PricesActions } from '@common/actions';
-
+import WalletCard from './WalletCard';
+import NoWallets from './NoWallets';
+import TotalBalance from './TotalBalance';
 
 @inject('prices','wallets')
 @observer
@@ -22,8 +24,11 @@ export class WalletsOverview extends React.Component{
         )
     });
 
+    get loading() {
+        return this.props.prices.loading || this.props.wallets.loading;
+    }
     componentDidMount(){
-
+        this.populate();
     }
     async populate(){
         try {
@@ -35,21 +40,32 @@ export class WalletsOverview extends React.Component{
             console.warn(e)
         }
     }
-    renderItem = ({item}) => {
+
+    @autobind
+    onPressWallet(wallet){
+    
+        Console.log(wallet);
 
     }
-    renderBody = (list) => {
-
-    }
+    // renderItem = ({item}) => <Text>{item.name}</Text>
+    renderItem = ({item}) => <WalletCard wallet = {item} onPress = {() => this.onPressWallet(item) }/>
+ 
+    renderBody = (list) => (!list.length && !this.loading) ? <Text>abc</Text> : (
+        <FlatList
+            style={styles.content}
+            data={list}
+            refreshControl={<RefreshControl refreshing={this.loading} onRefresh={() => this.populate()} />}
+            keyExtractor={(item, index) => String(index)}
+            renderItem={this.renderItem} 
+            />
+    );
 
     render(){
         const {wallets} = this.props;
-        debugger;
-        console.log(wallets);
         return(
-            <View>
-                <Text>{wallets.list}</Text>
-              
+            <View style = {styles.container}>
+                {/* <TotalBalance wallets = {wallets.list}/> */}
+                {this.renderBody(wallets.list)}
             </View>
         );
     }

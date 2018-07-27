@@ -4,9 +4,6 @@ import { Keyboard, StyleSheet, Text, TextInput, View ,} from 'react-native';
 import {colors, measures} from '../../../common/styles';
 
 import { Button, InputWithIcon } from '../../widgets';
-// import { Wallet as WalletUtils } from '@common/utils';
-// import { Wallets as WalletsActions } from '@common/actions';
-
 
 export class NewWalletName extends React.Component {
     static navigationOptions = {
@@ -40,14 +37,14 @@ export class NewWalletName extends React.Component {
                         placeholder="Ex.: For spending during next vacations"
                         onChangeText={walletDescription => this.setState({ walletDescription })} 
                     />
-                    <View style={styles.buttonsContainer}>
+                </View>
+                <View style={styles.buttonsContainer}>
                         <Button
                             children ='Next'
                             onPress = {this.onPressContinue}
                         />
                         
                     </View> 
-                </View>
             </View>
         );
     }

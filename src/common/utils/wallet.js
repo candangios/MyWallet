@@ -1,7 +1,5 @@
 import ethers from 'ethers';
-
 const { HDNode, providers, utils, Wallet } = ethers;
-
 const network = (process.env.NODE_ENV === 'production') ? 'mainnet' : 'rinkeby';
 // let network = (process.env.NODE_ENV === 'production') ?
 //     { name: 'mainnet', ensAddress: '0x314159265dd8dbb310642f98f50c066173c1259b', chainId: 1 } :

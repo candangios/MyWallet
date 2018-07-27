@@ -29,10 +29,11 @@ function getIonicon({ name, size, ...props }) {
 }
 
 export const Icon = (props) => {
-    debugger;
+
     if (!props.name) return null;
     const size = getSize(props.size);
     const color = props.color || colors.black;
+ 
     switch (props.type) {
         case 'ent': return <Entypo {...props} size={size} color={color} />;
         case 'ei': return <EvilIcon {...props} size={size} color={color} />;

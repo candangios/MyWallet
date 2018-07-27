@@ -1,6 +1,7 @@
 import { wallet as WalletStore, wallets as WalletsStore } from '@common/stores';
 import { Wallets as WalletsService, Api as ApiService } from '@common/services';
 import { Wallet as WalletUtils } from '@common/utils';
+import {View, Alert} from 'react-native'
 
 export async function addWallet(walletName, wallet, walletDescription = '') {
     WalletsStore.isLoading(true);
@@ -28,7 +29,7 @@ export async function removeWallet(wallet) {
 }
 
 export async function saveWallets() {
-    await WalletsService.saveWalletPKs(WalletsStore.list);
+    await WalletsService.saveWalletPKs(WalletsStore.list)
 }
 
 export async function selectWallet(wallet) {

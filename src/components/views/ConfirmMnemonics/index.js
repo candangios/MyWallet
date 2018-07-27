@@ -20,18 +20,17 @@ export class ConfirmMnemonics extends React.Component {
 
     @autobind
     async onPressConfirm() {
-        if (!this.refs.confirm.isValidSequence()) return;
-        try {
+        // if (!this.refs.confirm.isValidSequence()) return;
+        // try {
             const wallet = WalletUtils.loadWalletFromMnemonics(this.state.mnemonics);
-            debugger;
             const walletName = this.state.walletName;
             const walletDescription = this.state.walletDescription;
             await WalletsActions.addWallet(walletName, wallet, walletDescription);
             this.props.navigation.navigate('WalletsOverview', { replaceRoute: true });
             await WalletsActions.saveWallets();
-        } catch (e) {
-            console.warn(e);
-        }
+        // } catch (e) {
+        //     console.warn(e);
+        // }
     }
 
     render() {

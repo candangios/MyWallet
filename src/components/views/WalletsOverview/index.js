@@ -33,6 +33,7 @@ export class WalletsOverview extends React.Component{
     async populate(){
         try {
             await Promise.all([
+
                 WalletsActions.loadWallets(),
                 PricesActions.getPrice()
             ]);
@@ -43,11 +44,10 @@ export class WalletsOverview extends React.Component{
 
     @autobind
     onPressWallet(wallet){
-    
-        Console.log(wallet);
-
+        if(this.loading) return;
+        WalletsActions.selectWallet(wallet);
+        this.props.navigation.navigate('WalletDetails', {wallet});
     }
-    // renderItem = ({item}) => <Text>{item.name}</Text>
     renderItem = ({item}) => <WalletCard wallet = {item} onPress = {() => this.onPressWallet(item) }/>
  
     renderBody = (list) => (!list.length && !this.loading) ? <Text>abc</Text> : (

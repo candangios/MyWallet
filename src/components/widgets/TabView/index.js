@@ -16,6 +16,7 @@ export class TabView extends React.Component {
     render() {
         const { tabs } = this.props;
         const { active } = this.state;
+    
         return (
             <View style={styles.container}>
                 <View style={styles.body} children={tabs[active].content} />

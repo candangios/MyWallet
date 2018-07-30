@@ -17,13 +17,16 @@ export default class WalletCard extends React.Component{
         return Number(this.props.prices.usd * this.balance);
     }
     componentDidMount(){
+    
         WalletActions.updateBalance(this.props.wallet)
     }
+
+  
 
     render(){
         const{onPress, wallet} = this.props;
         return(
-            <TouchableWithoutFeedback>
+            <TouchableWithoutFeedback onPress = {onPress}>
                 <View style = {styles.container}>
                     <View style = {styles.leftColumn}>
                         {/* <Icon name = 'wallet' size = 'large' type = 'ent' /> */}

@@ -8,7 +8,7 @@ const getLabelColor = (active) => active ? styles.activeLabel : styles.label;
 export default ({ active, icon, label, onPress, ...props }) => (
     <TouchableWithoutFeedback onPress={onPress}>
         <View style={styles.container}>
-            <Icon color={active ? colors.black : colors.gray} {...props} name={icon} />
+            {/* <Icon color={active ? colors.black : colors.gray} {...props} name={icon} /> */}
             <Text style={getLabelColor(active)}>{label}</Text>
         </View>
     </TouchableWithoutFeedback>

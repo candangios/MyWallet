@@ -2,27 +2,27 @@ import {action, observable} from 'mobx';
 import { Transaction as TransactionUtils } from '../utils';
 import ethers from 'ethers';
 const  INITILA = {
-    items: null,
+    item: null,
     history:[],
     pendingtrasactions:[],
     loading: false
 };
 
 export class WalletStore{
-    @observable items = INITILA.items;
+    @observable item = INITILA.item;
     @observable history = INITILA.history;
     @observable pendingtrasactions = INITILA.pendingtrasactions;
     @observable loading = INITILA.loading;
 
-    @action isloading(state){
+    @action isLoading(state){
         this.loading = Boolean(state)
     }
     @action select(wallet){
         if (!(wallet instanceof ethers.Wallet)) throw('Invaild Wallet');
-        this.items = wallet
+        this.item = wallet
     }
     @action setHistory(history){
-        if (!this.items) throw(`can't update the history, No wallet selected.`);
+        if (!this.item) throw(`can't update the history, No wallet selected.`);
         if (!history instanceof Array) throw(`The history must by an Array`);
         this.history = history
     }

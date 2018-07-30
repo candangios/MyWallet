@@ -12,7 +12,8 @@ const navigator = StackNavigator({
     NewWallet: {screen: Views.NewWallet},
     CreateWallet: {screen: Views.CreateWallet},
     CreateMnemonics: {screen: Views.CreateMnemonics},
-    ConfirmMnemonics: {screen: Views.ConfirmMnemonics}
+    ConfirmMnemonics: {screen: Views.ConfirmMnemonics},
+    WalletDetails: {screen: Views.WalletDetails}
 }, {
     initialRouteName: INITIAL_ROUTE,
     navigationOptions: {

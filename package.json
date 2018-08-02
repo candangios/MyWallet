@@ -1,18 +1,25 @@
 {
-  "name": "MyWallet",
-  "version": "0.0.1",
-  "private": true,
+  "name": "EthereumWallet",
+  "version": "0.1.0",
+  "license": "MIT",
   "scripts": {
+    "postinstall": "./config/postinstall.sh",
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "android:build": "cd android && ./gradlew assembleDebug && cd .. && cp android/app/build/outputs/apk/debug/app-debug.apk EthereumWallet.apk",
+    "android:bundle": "react-native bundle --dev false --platform android --entry-file index.js --bundle-output ./android/app/build/intermediates/assets/debug/index.android.bundle --assets-dest ./android/app/build/intermediates/res/merged/debug",
+    "android:clean": "cd android && ./gradlew clean && cd ..",
+    "android:generate-apk": "npm run android:bundle && npm run android:build",
+    "android": "react-native run-android",
+    "logcat": "adb logcat *:S ReactNative:V ReactNativeJS:V",
+    "ios": "react-native run-ios"
   },
   "dependencies": {
-    "assert": "^1.4.1",
     "autobind-decorator": "2.1.0",
     "axios": "0.18.0",
     "ethers": "2.2.6",
     "identicon.js": "2.3.1",
-    "install": "^0.12.1",
     "mobx": "3.6.1",
     "mobx-react": "4.4.2",
     "moment": "2.21.0",
@@ -22,10 +29,10 @@
     "react-native-modal": "5.2.0",
     "react-native-permissions": "1.1.1",
     "react-native-qrcode-svg": "5.0.6",
-    "react-native-sensitive-info": "^5.1.0",
+    "react-native-sensitive-info": "5.1.0",
     "react-native-snackbar": "0.4.6",
     "react-native-svg": "6.2.2",
-    "react-native-vector-icons": "^4.5.0",
+    "react-native-vector-icons": "4.5.0",
     "react-navigation": "1.4.0"
   },
   "devDependencies": {

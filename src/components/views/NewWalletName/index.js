@@ -1,14 +1,15 @@
-import  React from 'react';
+import React from 'react';
+import { Keyboard, StyleSheet, Text, TextInput, View } from 'react-native';
 import autobind from 'autobind-decorator';
-import { Keyboard, StyleSheet, Text, TextInput, View ,} from 'react-native';
-import {colors, measures} from '../../../common/styles';
-
-import { Button, InputWithIcon } from '../../widgets';
+import { Button, InputWithIcon } from '@components/widgets';
+import { colors, measures } from '@common/styles';
+import { Wallet as WalletUtils } from '@common/utils';
+import { Wallets as WalletsActions } from '@common/actions';
 
 export class NewWalletName extends React.Component {
-    static navigationOptions = {
-        title: 'New Wallet Name'
-    };
+    
+    static navigationOptions = { title: 'New Wallet Name' };
+
     state = { walletName: '', walletDescription: '' };
 
     @autobind
@@ -19,38 +20,32 @@ export class NewWalletName extends React.Component {
         this.props.navigation.navigate('NewWallet', { walletName, walletDescription });
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <View style={styles.container}>
-                <View style = {styles.body}>
-                    <Text>Give a name to the new wallet</Text>
+                <View style={styles.body}>
+                    <Text style={styles.message}>Give a name to the new wallet</Text>
                     <TextInput
                         style={styles.input}
                         placeholder="Ex.: Vacations fund"
                         underlineColorAndroid="transparent"
-                        onChangeText={walletName => this.setState({ walletName })} 
-                    />
+                        onChangeText={walletName => this.setState({ walletName })} />
                     <Text style={styles.message}>Give a description too (optional)</Text>
                     <TextInput
                         style={styles.input}
                         underlineColorAndroid="transparent"
                         placeholder="Ex.: For spending during next vacations"
-                        onChangeText={walletDescription => this.setState({ walletDescription })} 
-                    />
+                        onChangeText={walletDescription => this.setState({ walletDescription })} />
                 </View>
                 <View style={styles.buttonsContainer}>
-                        <Button
-                            children ='Next'
-                            onPress = {this.onPressContinue}
-                        />
-                        
-                    </View> 
+                    <Button
+                        children="Next"
+                        onPress={this.onPressContinue} />
+                </View>
             </View>
         );
     }
-    
 }
-
 
 const styles = StyleSheet.create({
     container: {

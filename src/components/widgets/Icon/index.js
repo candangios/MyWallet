@@ -11,7 +11,7 @@ import MaterialCommunityIcon from 'react-native-vector-icons/dist/MaterialCommun
 import Octicon from 'react-native-vector-icons/dist/Octicons';
 import Zocial from 'react-native-vector-icons/dist/Zocial';
 import SimpleLineIcon from 'react-native-vector-icons/SimpleLineIcons';
-import { colors, measures } from '../../../common/styles';
+import { colors, measures } from '@common/styles';
 
 function getSize(size) {
     if ((size >>> 0) > 0) return size;
@@ -29,11 +29,9 @@ function getIonicon({ name, size, ...props }) {
 }
 
 export const Icon = (props) => {
-
     if (!props.name) return null;
     const size = getSize(props.size);
     const color = props.color || colors.black;
- 
     switch (props.type) {
         case 'ent': return <Entypo {...props} size={size} color={color} />;
         case 'ei': return <EvilIcon {...props} size={size} color={color} />;
@@ -47,7 +45,6 @@ export const Icon = (props) => {
         case 'simple': return <SimpleLineIcon {...props} size={size} color={color} />;
 
         default:
-       
         case 'ionicons': return getIonicon({ ...props, color, size });
     }
 };

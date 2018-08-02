@@ -1,6 +1,4 @@
-
-
-import {observable, action} from 'mobx'
+import { action, observable } from 'mobx';
 
 const INITIAL = {
     usd: 0,
@@ -8,37 +6,43 @@ const INITIAL = {
     brl: 0,
     loading: false
 };
-class PricesStore {
+
+export class PricesStore {
 
     @observable usd = INITIAL.usd;
     @observable eur = INITIAL.eur;
     @observable brl = INITIAL.brl;
     @observable loading = INITIAL.loading;
-    
-    validateInput(input){
-        if(isNaN(input) || typeof input !== 'number') throw new Error('The input is NaN');
+
+    validateInput(input) {
+        if (isNaN(input) || typeof input !== 'number') throw new Error('The input is NaN');
     }
-    @action isLoading(state){
+
+    @action isLoading(state) {
         this.loading = Boolean(state);
     }
-    @action setUSDRate(rate){
+
+    @action setUSDRate(rate) {
         this.validateInput(rate);
         this.usd = Number(rate);
     }
-    @action setEURRate(rate){
+    
+    @action setEURRate(rate) {
         this.validateInput(rate);
         this.eur = Number(rate);
     }
-    @action setBRLRate(rate){
+    
+    @action setBRLRate(rate) {
         this.validateInput(rate);
         this.brl = Number(rate);
     }
-    @action resizeTo(){
+
+    @action reset() {
         this.usd = INITIAL.usd;
         this.eur = INITIAL.eur;
         this.brl = INITIAL.brl;
         this.loading = INITIAL.loading;
     }
-
 }
-export default new PricesStore()
+
+export default new PricesStore();

@@ -1,53 +1,49 @@
 import React from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import autobind from 'autobind-decorator';
-import {colors, measures} from '../../../common/styles';
-import { autorun } from 'mobx';
+import { Button, TextBullet } from '@components/widgets';
 import { Wallet as WalletUtils } from '@common/utils';
-import { Button, TextBullet } from '../../widgets';
+import { colors, measures } from '@common/styles';
 
-export class CreateMnemonics extends React.Component{
-    static navigationOptions = {
-        title: 'Create Wallet'
-    }
+export class CreateMnemonics extends React.Component {
+    
+    static navigationOptions = { title: 'Create Wallet' };
+
     state = { mnemonics: null };
+
     @autobind
-    onPressProceed(){
-        const {mnemonics} = this.state;
-        const {walletName, walletDescription} = this.props.navigation.state.params;
-        this.props.navigation.navigate('ConfirmMnemonics',{mnemonics, walletName, walletDescription});
+    onPressProceed() {
+        const { mnemonics } = this.state;
+        const { walletName, walletDescription } = this.props.navigation.state.params;
+        this.props.navigation.navigate('ConfirmMnemonics', { mnemonics, walletName, walletDescription });
     }
 
-    componentDidMount(){
-        this.onPressGenerateMmenonics();
-    }
     @autobind
-    onPressGenerateMmenonics(){
+    onPressReveal() {
         const mnemonics = WalletUtils.generateMnemonics();
-        this.setState({mnemonics});
+        this.setState({ mnemonics });
     }
 
-    renderMnenonic = (mnemonic, index ) => (
+    renderMnemonic = (mnemonic, index) => (
         <View style={styles.mnemonic} key={index}>
             <TextBullet>{mnemonic}</TextBullet>
         </View>
     );
 
-    renderBody(){
-        const {mnemonics} = this.state;
-        if (!mnemonics){
-            return <Button onPress = {this.onPressGenerateMmenonics}>Generate Mnemonics</Button>;
-        } 
-        return(
+    renderBody() {
+        const { mnemonics } = this.state;
+        if (!mnemonics) return <Button onPress={this.onPressReveal}>Reveal</Button>;
+        return (
             <View style={styles.mnemonicsContainer}>
-                {mnemonics.map(this.renderMnenonic)}
+                {mnemonics.map(this.renderMnemonic)}
             </View>
-        ); 
+        );
     }
 
-    render(){
-        return(
-            <View style = {styles.container}>
+    render() {
+        return (
+            <View style={styles.container}>
+                <View />
                 <Text style={styles.message}>Save carefully your sequence of mnemonics:</Text>
                 {this.renderBody()}
                 <View style={styles.buttonsContainer}>
@@ -59,34 +55,34 @@ export class CreateMnemonics extends React.Component{
         );
     }
 }
+
 const styles = StyleSheet.create({
-    container:{
+    container: {
         alignItems: 'center',
         justifyContent: 'space-between',
-        flex: 2,
+        flex: 1,
         backgroundColor: colors.defaultBackground,
-        padding: measures.defaultPadding,
+        padding: measures.defaultPadding
     },
-    message:{
+    message: {
         color: colors.black,
         fontSize: 16,
         textAlign: 'center',
         marginVertical: measures.defaultMargin,
-        marginHorizontal: 32,
+        marginHorizontal: 32
     },
     mnemonicsContainer: {
         flexDirection: 'row',
         justifyContent: 'center',
         flexWrap: 'wrap',
-        maxWidth: '80%',
+        maxWidth: '80%'
     },
     mnemonic: {
-        margin: 4,
+        margin: 4
     },
-    buttonContainer:{
+    buttonsContainer: {
         width: '100%',
         justifyContent: 'flex-end',
-        height: 104,
-    },
-
-})
+        height: 104
+    }
+});

@@ -1,36 +1,36 @@
 import React from 'react';
-import {ActivityIndicator, StyleSheet, Text, TouchableWithoutFeedback, View} from 'react-native';
-import {inject, observer} from 'mobx-react';
+import { ActivityIndicator, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
+import { inject, observer } from 'mobx-react';
 import { Icon } from '@components/widgets';
 import { colors, measures } from '@common/styles';
 import { Wallet as WalletUtils } from '@common/utils';
 import { Wallets as WalletActions } from '@common/actions';
+
 @inject('prices')
 @observer
-export default class WalletCard extends React.Component{
+export default class WalletCard extends React.Component {
 
-    get balance(){
-        if (!this.props.wallet.balance) return 0
+    get balance() {
+        if (!this.props.wallet.balance) return 0;
         return Number(WalletUtils.formatBalance(this.props.wallet.balance));
     }
+
     get fiatBalance() {
         return Number(this.props.prices.usd * this.balance);
     }
-    componentDidMount(){
-    
-        WalletActions.updateBalance(this.props.wallet)
+
+    componentDidMount() {
+        WalletActions.updateBalance(this.props.wallet);
     }
 
-  
-
-    render(){
-        const{onPress, wallet} = this.props;
-        return(
-            <TouchableWithoutFeedback onPress = {onPress}>
-                <View style = {styles.container}>
-                    <View style = {styles.leftColumn}>
-                        {/* <Icon name = 'wallet' size = 'large' type = 'ent' /> */}
-                    </View> */}
+    render() {
+        const { onPress, wallet } = this.props;
+        return (
+            <TouchableWithoutFeedback onPress={onPress}>
+                <View style={styles.container}>
+                    <View style={styles.leftColumn}>
+                        <Icon name='wallet' size='large' type='ent' />
+                    </View>
                     <View style={styles.middleColumn}>
                         <Text style={styles.title}>{wallet.name}</Text>
                         <Text style={styles.description}>{wallet.description}</Text>
@@ -46,7 +46,8 @@ export default class WalletCard extends React.Component{
         );
     }
 }
-const styles =  StyleSheet.create({
+
+const styles = StyleSheet.create({
     container: {
         alignItems: 'stretch',
         backgroundColor: colors.white,
@@ -97,4 +98,4 @@ const styles =  StyleSheet.create({
     next: {
         color: colors.lightGray
     }
-})
+});

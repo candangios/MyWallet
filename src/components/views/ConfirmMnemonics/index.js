@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Alert } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import autobind from 'autobind-decorator';
 import { Button } from '@components/widgets';
 import { Wallet as WalletUtils } from '@common/utils';

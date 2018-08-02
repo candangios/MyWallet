@@ -1,45 +1,52 @@
-import {action, observable} from 'mobx';
-import { Transaction as TransactionUtils } from '../utils';
+import { action, observable } from 'mobx';
+import { Transaction as TransactionUtils } from '@common/utils';
 import ethers from 'ethers';
-const  INITILA = {
+
+const INITIAL = {
     item: null,
-    history:[],
-    pendingtrasactions:[],
+    history: [],
+    pendingTransactions: [],
     loading: false
 };
 
-export class WalletStore{
-    @observable item = INITILA.item;
-    @observable history = INITILA.history;
-    @observable pendingtrasactions = INITILA.pendingtrasactions;
-    @observable loading = INITILA.loading;
+export class WalletStore {
 
-    @action isLoading(state){
-        this.loading = Boolean(state)
+    @observable item = INITIAL.item;
+    @observable history = INITIAL.history;
+    @observable pendingTransactions = INITIAL.pendingTransactions;
+    @observable loading = INITIAL.loading;
+
+    @action isLoading(state) {
+        this.loading = Boolean(state);
     }
-    @action select(wallet){
-        if (!(wallet instanceof ethers.Wallet)) throw('Invaild Wallet');
-        this.item = wallet
+
+    @action select(wallet) {
+        if (!(wallet instanceof ethers.Wallet)) throw new Error('Invalid Wallet');
+        this.item = wallet;
     }
-    @action setHistory(history){
-        if (!this.item) throw(`can't update the history, No wallet selected.`);
-        if (!history instanceof Array) throw(`The history must by an Array`);
-        this.history = history
+
+    @action setHistory(history) {
+        if (!this.item) throw new Error(`Can't update the history. No wallet was selected.`);
+        if (!(history instanceof Array)) throw new Error('The history must be an array.');
+        this.history = history;
     }
-    @action addPendingTransaction(txn){
-        this.pendingtrasactions.push(txn)
+
+    @action addPendingTransaction(txn) {
+        this.pendingTransactions.push(txn);
     }
-    @action moveToHistory(txn){
-        const pending = this.pendingtrasactions.filter(tx => txn !== tx.hash);
-        this.pendingtrasactions = pending;
+
+    @action moveToHistory(txn) {
+        const pending = this.pendingTransactions.filter(tx => txn.hash !== tx.hash);
+        this.pendingTransactions = pending;
         this.history.push(txn);
     }
+
     @action reset() {
         this.item = INITIAL.item;
         this.history = INITIAL.history;
         this.pendingTransactions = INITIAL.pendingTransactions;
         this.loading = INITIAL.loading;
     }
-    
 }
+
 export default new WalletStore();

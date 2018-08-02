@@ -1,9 +1,10 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
-import {TabView} from  '@components/widgets';
-import {WalletExtract, ReceiveCoins, SendCoins, WalletSettings} from '../WalletDetailTabs';
-import {colors, measures} from '@common/styles';
+import { TabView } from '@components/widgets';
+import { colors, measures } from '@common/styles';
+import { ReceiveCoins, SendCoins, WalletExtract, WalletSettings } from '../index';
+
 export class WalletDetails extends React.Component {
+    
     static navigationOptions = ({ navigation, screenProps }) => ({
         title: navigation.state.params.wallet.name
     });
@@ -15,22 +16,7 @@ export class WalletDetails extends React.Component {
         { id: 'settings', label: 'Settings', icon: 'settings', content: <WalletSettings {...this.props} /> }
     ];
 
-
-    render(){
-    
-        return(
-            <TabView tabs = {this.tabs}/>
-        );
+    render() {
+        return <TabView tabs={this.tabs} />;
     }
 }
-const styles = StyleSheet.create({
-    container: {
-        alignItems: 'stretch',
-        justifyContent: 'flex-start',
-        flex: 1,
-        padding: measures.defaultPadding
-    },
-    content: {
-        marginTop: measures.defaultMargin
-    }
-});

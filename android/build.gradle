@@ -9,7 +9,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
+        classpath 'com.android.tools.build:gradle:3.0.1'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -20,6 +20,7 @@ allprojects {
     repositories {
         mavenLocal()
         jcenter()
+        maven { url "https://jitpack.io" }
         maven {
             // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
             url "$rootDir/../node_modules/react-native/android"
@@ -32,9 +33,26 @@ allprojects {
 }
 
 ext {
-    buildToolsVersion = "26.0.3"
-    minSdkVersion = 16
-    compileSdkVersion = 26
-    targetSdkVersion = 26
-    supportLibVersion = "26.1.0"
+    compileSdkVersion = 27
+    buildToolsVersion = '27.0.1'
+}
+
+subprojects { subproject ->
+    afterEvaluate {
+        if(
+            (subproject.name == 'react-native-camera') ||
+            (subproject.name == 'react-native-permissions') ||
+            (subproject.name == 'react-native-snackbar') ||
+            (subproject.name == 'react-native-qrcode-svg') ||
+            (subproject.name == 'react-native-sensitive-info') ||
+            (subproject.name == 'react-native-svg') ||
+            (subproject.name == 'react-native-vector-icons')
+        // .... add each project that complains about needing build tool 23.0.1 here
+        ) {
+            android {
+                compileSdkVersion rootProject.ext.compileSdkVersion
+                buildToolsVersion rootProject.ext.buildToolsVersion
+            }
+        }
+    }
 }

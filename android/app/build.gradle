@@ -94,13 +94,13 @@ def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = false
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdkVersion 27
+    buildToolsVersion "27.0.1"
 
     defaultConfig {
-        applicationId "com.mywallet"
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        applicationId "com.ethereumwallet"
+        minSdkVersion 19
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         ndk {
@@ -137,11 +137,22 @@ android {
 }
 
 dependencies {
+    compile (project(':react-native-camera')) {
+        exclude group: "com.google.android.gms"
+    }
+    compile ("com.google.android.gms:play-services-vision:10.2.0") {
+        force = true;
+    }
     compile project(':react-native-vector-icons')
+    compile project(':react-native-svg')
+    compile project(':react-native-snackbar')
+    compile project(':react-native-sensitive-info')
     compile project(':react-native-vector-icons')
-    compile project(':react-native-vector-icons')
+    compile project(':react-native-svg')
+    compile project(':react-native-snackbar')
+    compile project(':react-native-sensitive-info')
     compile fileTree(dir: "libs", include: ["*.jar"])
-    compile "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
+    compile "com.android.support:appcompat-v7:27.0.1"
     compile "com.facebook.react:react-native:+"  // From node_modules
 }
 

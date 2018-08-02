@@ -1,7 +1,13 @@
-/** @format */
-
-import {AppRegistry} from 'react-native';
+import { AppRegistry, YellowBox } from 'react-native';
+import './src/common/utils/shims';
 import App from './src';
-import {name as appName} from './app.json';
 
-AppRegistry.registerComponent(appName, () => App);
+YellowBox.ignoreWarnings([
+  'Warning: componentWillMount',
+  'Warning: componentWillReceiveProps',
+  'Module RCTImageLoader',
+  'Class RCTCxxModule was not exported',
+  'Remote debugger'
+]);
+
+AppRegistry.registerComponent('EthereumWallet', () => App);

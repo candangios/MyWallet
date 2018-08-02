@@ -1,8 +1,10 @@
 import { action, observable } from 'mobx';
+
 const INITIAL = {
     addresses: [],
     loading: false
-}
+};
+
 export class RecentsStore {
 
     @observable addresses = INITIAL.addresses;

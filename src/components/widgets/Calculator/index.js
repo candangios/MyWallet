@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import autobind from 'autobind-decorator';
-import { NumberGrid } from '../../widgets';
-import { colors } from '../../../common/styles';
+import { NumberGrid } from '@components/widgets';
+import { colors } from '@common/styles';
 import Panel from './Panel';
 
 export class Calculator extends React.Component {

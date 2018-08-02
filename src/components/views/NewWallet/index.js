@@ -1,15 +1,15 @@
 import React from 'react';
-import {View, StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import autobind from 'autobind-decorator';
-import {Button} from '../../widgets';
-import {colors, measures} from '../../../common/styles';
+import { Button } from '@components/widgets';
+import { colors, measures } from '@common/styles';
 
-export class NewWallet extends React.Component{
-    static navigationOptions = {
-        title: 'New Wallet'
-    };
+export class NewWallet extends React.Component {
+    
+    static navigationOptions = { title: 'New Wallet' };
+    
     @autobind
-    onPressLoad(){
+    onPressLoad() {
         const { walletName, walletDescription } = this.props.navigation.state.params;
         this.props.navigation.navigate('LoadWallet', { walletName, walletDescription });
     }
@@ -19,7 +19,8 @@ export class NewWallet extends React.Component{
         const { walletName, walletDescription } = this.props.navigation.state.params;
         this.props.navigation.navigate('CreateWallet', { walletName, walletDescription });
     }
-    render(){
+
+    render() {
         return (
             <View style={styles.container}>
                 <View style={styles.contentContainer}>

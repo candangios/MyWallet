@@ -4,8 +4,8 @@ import { RNCamera } from 'react-native-camera';
 import Modal from 'react-native-modal';
 import Permissions from 'react-native-permissions';
 import autobind from 'autobind-decorator';
-import { Icon } from '../../widgets';
-import { colors } from '../../../common/styles';
+import { Icon } from '@components/widgets';
+import { colors } from '@common/styles';
 
 const { BarCodeType } = RNCamera.Constants;
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
 import autobind from 'autobind-decorator';
-import { Icon } from '../../widgets';
-import { colors } from '../../../common/styles';
+import { Icon } from '@components/widgets';
+import { colors } from '@common/styles';
 
 export class InputWithIcon extends React.Component {
 
